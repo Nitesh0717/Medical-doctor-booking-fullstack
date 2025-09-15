@@ -1,5 +1,5 @@
 
-const url_production = "https://medical-appointment-backend-3viy.onrender.com"
+const url_production = "https://medicare-backend-1-3tho.onrender.com"
 // eslint-disable-next-line no-unused-vars
 const url_local = "http://localhost:5000"
 export const BASE_URL = url_production;
