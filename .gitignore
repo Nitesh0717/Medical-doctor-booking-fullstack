@@ -1,4 +1,30 @@
+# dependencies
+node_modules/
+
+# environment variables
 .env
 backend/.env
 frontend/.env
-node_modules
+
+# build files
+dist/
+build/
+
+# docker
+docker-compose.override.yml
+
+# logs
+logs
+*.log
+npm-debug.log*
+
+# OS files
+.DS_Store
+
+# kubernetes tools (large files)
+kubectl
+minikube-linux-amd64
+
+# misc
+coverage/
+.vscode/
