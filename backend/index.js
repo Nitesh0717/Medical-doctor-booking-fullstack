@@ -10,7 +10,9 @@ import reviewRoute from "./Routes/review.js";
 import bookingRoute from "./Routes/booking.js";
 import messageRoute from "./Routes/message.js";
 
-dotenv.config();
+if (process.env.NODE_ENV !== "production") {
+  dotenv.config();
+}
 
 const app = express();
 const port = process.env.PORT || 5000;
@@ -32,7 +34,7 @@ const connectDB = async () => {
     await mongoose.connect(process.env.MONGO_URL);
     console.log("Database connected successfully");
   } catch (err) {
-    console.log("Database connection falied!");
+    console.log("Database connection failed!");
   }
 };
 
