@@ -1,3 +1,4 @@
+import ProtectedRoute from "./routes/ProtectedRoute";
 import "./App.css"
 import Layout from "./layout/Layout"
 
