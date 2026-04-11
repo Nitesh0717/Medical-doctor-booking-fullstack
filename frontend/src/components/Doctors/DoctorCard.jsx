@@ -6,15 +6,6 @@ import { BsArrowRightCircle } from "react-icons/bs";
 
 const DoctorCard = ({ doctor }) => {
 
-  // dynamic image import from assets folder
-  let doctorImage;
-
-  try {
-    doctorImage = require(`../../assets/images/${doctor.photo}`);
-  } catch {
-    doctorImage = require(`../../assets/images/defaultUser.jpg`);
-  }
-
   return (
 
     <div className="p-3 lg:p-5 bg-white shadow-md rounded-xl hover:shadow-xl transition duration-300">
@@ -24,7 +15,7 @@ const DoctorCard = ({ doctor }) => {
       <div className="w-full h-[220px] overflow-hidden rounded-lg">
 
         <img
-          src={doctorImage}
+          src={new URL(`../../assets/images/${doctor.photo}`, import.meta.url).href}
           className="w-full h-full object-cover"
           alt={doctor.name}
         />
