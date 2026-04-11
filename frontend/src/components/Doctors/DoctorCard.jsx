@@ -15,7 +15,7 @@ const DoctorCard = ({ doctor }) => {
       <div className="w-full h-[220px] overflow-hidden rounded-lg">
 
         <img
-          src={new URL(`../../assets/images/${doctor.photo}`, import.meta.url).href}
+          src={`/images/${doctor.photo}`}
           className="w-full h-full object-cover"
           alt={doctor.name}
         />
@@ -25,14 +25,14 @@ const DoctorCard = ({ doctor }) => {
 
       {/* Doctor Name */}
 
-      <h2 className="text-[18px] leading-[30px] lg:text-[22px] lg:leading-9 text-headingColor font-[700] mt-3">
+      <h2 className="text-[18px] lg:text-[22px] font-[700] mt-3">
 
         {doctor.name}
 
       </h2>
 
 
-      {/* Specialization + Rating */}
+      {/* specialization */}
 
       <div className="flex items-center justify-between mt-2">
 
@@ -43,19 +43,13 @@ const DoctorCard = ({ doctor }) => {
         </span>
 
 
-        <div className="flex items-center gap-[6px]">
+        <div className="flex items-center gap-1">
 
           <img src={starIcon} alt="rating" />
 
-          <span className="text-[14px] font-[600] text-headingColor">
+          <span className="text-[14px] font-[600]">
 
             {doctor.averageRating || 4.5}
-
-          </span>
-
-          <span className="text-[13px] text-textColor">
-
-            ({doctor.totalRating || 20})
 
           </span>
 
@@ -64,20 +58,16 @@ const DoctorCard = ({ doctor }) => {
       </div>
 
 
-      {/* Experience */}
+      {/* experience */}
 
       <p className="text-[14px] text-textColor mt-2">
 
-        {doctor.experiences?.length > 0
-
-          ? `At ${doctor.experiences[doctor.experiences.length - 1].hospital}`
-
-          : "Experienced Specialist"}
+        Experienced Specialist
 
       </p>
 
 
-      {/* View Profile Button */}
+      {/* button */}
 
       <div className="flex justify-end mt-3">
 
