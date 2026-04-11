@@ -59,7 +59,8 @@ export const register = async (req, res) => {
     res
       .status(200)
       .json({ success: true, message: "User successfully created" });
-  } catch (err) {
+  } catch (error) {
+    console.log(error);
     res
       .status(500)
       .json({ success: false, message: "Internal server error, Try again" });
@@ -91,9 +92,7 @@ export const login = async (req, res) => {
     );
 
     if (!isPasswordMatch) {
-      return res
-        .status(400)
-        .json({ status: false, message: "Invalid Credentials" });
+      return res.status(400).json({ status: false, message: "Invalid Credentials" });
     }
 
     //generate token
@@ -109,7 +108,8 @@ export const login = async (req, res) => {
         data: { ...rest },
         role,
       });
-  } catch (err) {
+  } catch (error) {
+    console.log(error);
     res.status(500).json({ success: false, message: "Login failed" });
   }
 };
@@ -155,7 +155,8 @@ export const loginAdmin = async (req, res) => {
       data: { ...rest },
       role,
     });
-  } catch (err) {
+  } catch (error) {
+    console.log(error);
     res.status(500).json({ success: false, message: "Admin login failed" });
   }
 };
@@ -186,6 +187,7 @@ export const addAdmin = async (req, res) => {
     return res.status(200).json({ success: true, message: "User role updated to admin", data: user });
     
   } catch (error) {
+    console.log(error);
     return res.status(500).json({ success: false, message: "Server error" });
   }
 };
