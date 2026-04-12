@@ -31,7 +31,7 @@ const DoctorDetails = () => {
 
         {error && <Error />}
 
-        {!loading && !error && (
+        {!loading && !error && doctor && (
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-[50px]">
 
@@ -56,7 +56,7 @@ const DoctorDetails = () => {
 
                 <div className="flex flex-col w-[98%]">
 
-                  <span className="bg-[#CCF0F3] flex items-center w-[55%] sm:w-[30%] md:w-[25%] text-irisBlueColor py-1 px-1 sm:px-4 text-[12px] lg:text-[14px] font-[600] rounded">
+                  <span className="bg-[#CCF0F3] flex items-center w-[55%] sm:w-[30%] md:w-[25%] text-irisBlueColor py-1 px-3 text-[12px] lg:text-[14px] font-[600] rounded">
 
                     {doctor.specialization}
 
@@ -91,9 +91,11 @@ const DoctorDetails = () => {
                   </div>
 
 
+                  {/* about short text */}
+
                   <p className="text-[13px] md:text-[14px] md:max-w-[390px] mt-2">
 
-                    {doctor.bio || "Professional specialist providing high quality medical care."}
+                    {doctor.about}
 
                   </p>
 
