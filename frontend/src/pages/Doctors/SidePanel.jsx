@@ -8,29 +8,34 @@ const SidePanel = ({ doctorId, ticketPrice, timeSlots }) => {
 
   const bookingHandler = async () => {
 
-    if (!token) {
-      toast.error("Please login first");
-      return;
-    }
-
     try {
+
+      if (!token) {
+        toast.error("Please login first");
+        return;
+      }
+
+      const bookingData = {
+        doctor: doctorId,
+        ticketPrice: ticketPrice,
+        appointmentDate: "2026-04-20",
+        timeSlot: "10:00 AM"
+      };
+
+      console.log("Sending booking data:", bookingData);
 
       const res = await fetch(`${BASE_URL}/bookings`, {
         method: "POST",
         headers: {
-          Authorization: `Bearer ${token}`,
           "Content-Type": "application/json",
+          Authorization: `Bearer ${token}`
         },
-
-        body: JSON.stringify({
-          doctor: doctorId,
-          ticketPrice: ticketPrice,
-          appointmentDate: new Date(), 
-          timeSlot: timeSlots?.[0]?.startingTime || "10:00 AM"
-        }),
+        body: JSON.stringify(bookingData)
       });
 
       const data = await res.json();
+
+      console.log("Booking response:", data);
 
       if (!res.ok) {
         throw new Error(data.message);
@@ -39,47 +44,57 @@ const SidePanel = ({ doctorId, ticketPrice, timeSlots }) => {
       toast.success("Appointment booked successfully ✅");
 
     } catch (err) {
-      console.error(err);
-      toast.error("Booking failed ❌");
+
+      console.error("Booking error:", err);
+
+      toast.error(err.message || "Booking failed");
+
     }
+
   };
 
+
   return (
+
     <div className="flex items-center justify-center shadow-panelShadow rounded-md h-[24rem] lg:h-[24rem]">
 
       <div>
 
         <div className="flex items-center gap-6">
-          <p className="text_para mt-0 font-[700] text-headingColor">
+
+          <p className="text_para font-[700] text-headingColor">
             Consultation Fee
           </p>
 
-          <span className="text-[16px] lg:text-[22px] font-[700] text-headingColor">
+          <span className="text-[20px] font-[700] text-headingColor">
             {ticketPrice} INR
           </span>
+
         </div>
 
 
-        <div className="mt-[30px]">
 
-          <p className="text_para font-[600] text-headingColor">
+        <div className="mt-6">
+
+          <p className="font-[600] text-headingColor">
             Available Time Slots:
           </p>
 
+
           <ul className="mt-3">
 
-            {timeSlots?.map((time, index) => (
+            {timeSlots?.map((slot, index) => (
 
               <li
                 key={index}
-                className="flex items-center justify-between mb-2"
+                className="flex justify-between mb-2"
               >
 
-                <p>{time.day}</p>
+                <p>{slot.day}</p>
 
-                <p className="text-[15px] font-[600] text-textColor">
-                  {convertTime(time.startingTime)} -
-                  {convertTime(time.endingTime)}
+                <p>
+                  {convertTime(slot.startingTime)} -
+                  {convertTime(slot.endingTime)}
                 </p>
 
               </li>
@@ -91,19 +106,23 @@ const SidePanel = ({ doctorId, ticketPrice, timeSlots }) => {
         </div>
 
 
+
         <button
           onClick={bookingHandler}
-          className="btn px-2 w-full rounded-md mt-4"
+          className="btn w-full mt-5 rounded-md"
         >
 
           Book Appointment
 
         </button>
 
+
       </div>
 
     </div>
+
   );
+
 };
 
 export default SidePanel;
