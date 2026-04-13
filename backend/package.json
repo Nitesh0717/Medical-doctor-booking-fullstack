@@ -1,13 +1,12 @@
 {
   "name": "medicare-booking",
   "version": "1.0.0",
-  "description": "",
+  "description": "Medical Doctor Appointment Booking MERN Backend",
   "type": "module",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node index.js",
-    "start-dev": "nodemon index.js"
+    "dev": "nodemon index.js",
+    "start": "node index.js"
   },
   "author": "Nitesh",
   "license": "ISC",
